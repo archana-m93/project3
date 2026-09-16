@@ -1,0 +1,321 @@
+Started by GitHub push by archana-m93
+Checking out git https://github.com/archana-m93/project3.git into /var/lib/jenkins/workspace/project3_trendstore@script/437eec16895be807c5397475a84aec852948672da7bf3efe80c78a9088aec26b to read Trend/Jenkinsfile
+The recommended git tool is: git
+using credential jenkinssh
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/project3_trendstore@script/437eec16895be807c5397475a84aec852948672da7bf3efe80c78a9088aec26b/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/archana-m93/project3.git # timeout=10
+Fetching upstream changes from https://github.com/archana-m93/project3.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_SSH to set credentials jenkins
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- https://github.com/archana-m93/project3.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 7ca038a09811bc77a6284d651d864f1a9cebfcf9 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 7ca038a09811bc77a6284d651d864f1a9cebfcf9 # timeout=10
+Commit message: "added updated README fileddd"
+ > git rev-list --no-walk 86d7be0e3f1aa1a0baad81f6a2cfa9bfb5d17b89 # timeout=10
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/project3_trendstore
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+using credential jenkinssh
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/project3_trendstore/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/archana-m93/project3.git # timeout=10
+Fetching upstream changes from https://github.com/archana-m93/project3.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_SSH to set credentials jenkins
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- https://github.com/archana-m93/project3.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 7ca038a09811bc77a6284d651d864f1a9cebfcf9 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 7ca038a09811bc77a6284d651d864f1a9cebfcf9 # timeout=10
+Commit message: "added updated README fileddd"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] echo
+Checking out source code from GitHub
+[Pipeline] checkout
+The recommended git tool is: git
+using credential jenkinssh
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/project3_trendstore/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/archana-m93/project3.git # timeout=10
+Fetching upstream changes from https://github.com/archana-m93/project3.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_SSH to set credentials jenkins
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- https://github.com/archana-m93/project3.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 7ca038a09811bc77a6284d651d864f1a9cebfcf9 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 7ca038a09811bc77a6284d651d864f1a9cebfcf9 # timeout=10
+Commit message: "added updated README fileddd"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] echo
+Building Docker image archanamr/project3:v23
+[Pipeline] sh
++ cd Trend
++ docker build -t archanamr/project3:v23 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  13.62MB
+Step 1/4 : FROM nginx:alpine
+ ---> 72ba65eb42c1
+Step 2/4 : COPY dist/ /usr/share/nginx/html/
+ ---> Using cache
+ ---> 500d2127bbb5
+Step 3/4 : RUN find /usr/share/nginx/html -type d -exec chmod 755 {} \;     && find /usr/share/nginx/html -type f -exec chmod 644 {} \;
+ ---> Using cache
+ ---> 367370a4627b
+Step 4/4 : EXPOSE 80
+ ---> Using cache
+ ---> e1fdf5bd8d45
+Successfully built e1fdf5bd8d45
+Successfully tagged archanamr/project3:v23
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Docker Image)
+[Pipeline] echo
+Pushing Docker image to Docker Hub
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ echo ****
++ docker login -u archanamr --password-stdin
+
+WARNING! Your credentials are stored unencrypted in '/var/lib/jenkins/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
++ docker push archanamr/project3:v23
+The push refers to repository [docker.io/archanamr/project3]
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Waiting
+850bf2dcecff: Waiting
+af7dd138f459: Waiting
+58c524ea09ce: Waiting
+55afa1ecc21d: Layer already exists
+850bf2dcecff: Waiting
+af7dd138f459: Layer already exists
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+850bf2dcecff: Waiting
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+8f924cf5086c: Layer already exists
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+850bf2dcecff: Layer already exists
+e6e742b546dd: Waiting
+bc98d7675616: Waiting
+51900e10fb9c: Waiting
+6636b9fc203c: Waiting
+58c524ea09ce: Waiting
+58c524ea09ce: Layer already exists
+e6e742b546dd: Layer already exists
+bc98d7675616: Layer already exists
+51900e10fb9c: Layer already exists
+6636b9fc203c: Layer already exists
+v23: digest: sha256:e1fdf5bd8d45b51c5daf641ff2f195594d7e8dd793afbf795b5ac7002536f28c size: 2265
++ docker logout
+Removing login credentials for https://index.docker.io/v1/
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to EKS)
+[Pipeline] echo
+Deploying application to AWS EKS
+[Pipeline] sh
++ aws eks update-kubeconfig --region ap-south-1 --name project2-eks
+Updated context arn:aws:eks:ap-south-1:504730079413:cluster/project2-eks in /var/lib/jenkins/.kube/config
++ cd Trend
++ sed -i s|image:.*|image: archanamr/project3:v23| deployment.yaml
++ kubectl apply -f deployment.yaml
+deployment.apps/project2-app configured
++ kubectl apply -f service.yaml
+service/project2-service unchanged
++ kubectl rollout status deployment/project2-app
+Waiting for deployment "project2-app" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "project2-app" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "project2-app" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "project2-app" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "project2-app" rollout to finish: 1 old replicas are pending termination...
+deployment "project2-app" successfully rolled out
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Verify Deployment)
+[Pipeline] sh
++ kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+project2-app-64557f998c-khxbv   1/1     Running   0          13s
+project2-app-64557f998c-m4jt6   1/1     Running   0          5s
++ kubectl get service project2-service
+NAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)        AGE
+project2-service   LoadBalancer   10.100.161.210   a503c84e3e55842b9b7eab9f63043fe0-1826351808.ap-south-1.elb.amazonaws.com   80:32723/TCP   2d7h
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+CI/CD Pipeline completed successfully!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
