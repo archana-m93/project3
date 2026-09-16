@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -22,7 +23,7 @@ pipeline {
                 echo "Building Docker image ${DOCKER_IMAGE}:${IMAGE_TAG}"
 
                 sh '''
-                cd Trend
+                    cd Trend
                     docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} .
                 '''
             }
@@ -57,6 +58,8 @@ pipeline {
                         --region ${AWS_REGION} \
                         --name ${EKS_CLUSTER}
 
+                    cd Trend
+
                     sed -i "s|image:.*|image: ${DOCKER_IMAGE}:${IMAGE_TAG}|" deployment.yaml
 
                     kubectl apply -f deployment.yaml
@@ -87,3 +90,4 @@ pipeline {
         }
     }
 }
+```
