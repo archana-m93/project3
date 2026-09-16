@@ -90,4 +90,6 @@ No build process is required
 
 No package.json is needed
 
+
+CI/CD pipeline is automated using Jenkins and AWs
 CI/CD pipeline is automated using Jenkins and AWS EKS.
